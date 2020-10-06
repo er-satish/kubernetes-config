@@ -1,0 +1,37 @@
+# create a deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: assetz-ui
+spec:
+  selector:
+    matchLabels:
+      run: assetz-ui
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: assetz-ui
+    spec:
+      containers:
+      - name: assetz-ui
+        image: localhost:32000/assetz/ui:latest
+        ports:
+        - containerPort: 5000
+
+---
+# create a service
+apiVersion: v1
+kind: Service
+metadata:
+  name: assetz-ui
+  labels:
+    run: assetz-ui
+spec:
+  type: NodePort
+  selector:
+    run: assetz-ui
+  ports:
+  - port: 5000
+    protocol: TCP
+
