@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: assetz-backend
-        image: localhost:32000/assetz/backend:latest
+        image: 192.168.0.112:32000/assetz/backend:latest
         ports:
         - containerPort: 8080
 
@@ -33,5 +33,6 @@ spec:
     run: assetz-backend
   ports:
   - port: 8080
+    nodePort: 30707
     protocol: TCP
 

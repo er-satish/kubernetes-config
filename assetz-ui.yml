@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: assetz-ui
-        image: localhost:32000/assetz/ui:latest
+        image: 192.168.0.112:32000/assetz/ui:latest
         ports:
         - containerPort: 5000
 
@@ -33,5 +33,6 @@ spec:
     run: assetz-ui
   ports:
   - port: 5000
+    nodePort: 31999
     protocol: TCP
 
