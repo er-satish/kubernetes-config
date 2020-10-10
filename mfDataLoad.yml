@@ -1,0 +1,14 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: mf-dataload
+spec:
+  schedule: "30 22 1/1 * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: mf-dataload
+            image: 192.168.0.112:32000/assetz/mf-dataload:latest
+          restartPolicy: OnFailure

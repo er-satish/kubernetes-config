@@ -1,0 +1,20 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: stocks-dataload
+spec:
+  schedule: "00 18 1/1 * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: stocks-dataload
+            image: 192.168.0.112:32000/assetz/stocks-dataload:latest
+            env:
+              - name: PGPASSWORD
+                valueFrom:
+                  configMapKeyRef:
+                    name: postgres-configuration
+                    key: POSTGRES_PASSWORD
+          restartPolicy: OnFailure
