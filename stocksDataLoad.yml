@@ -2,6 +2,7 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: stocks-dataload
+  namespace: assetz-ns
 spec:
   schedule: "00 18 1/1 * *"
   jobTemplate:

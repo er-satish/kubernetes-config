@@ -3,15 +3,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: assetz-backend
+  namespace: assetz-ns
 spec:
   selector:
     matchLabels:
-      run: assetz-backend
+      app: assetz-backend
   replicas: 1
   template:
     metadata:
       labels:
-        run: assetz-backend
+        app: assetz-backend
     spec:
       containers:
       - name: assetz-backend
@@ -25,12 +26,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: assetz-backend
+  namespace: assetz-ns
   labels:
-    run: assetz-backend
+    app: assetz-backend
 spec:
   type: NodePort
   selector:
-    run: assetz-backend
+    app: assetz-backend
   ports:
   - port: 8080
     nodePort: 30707
